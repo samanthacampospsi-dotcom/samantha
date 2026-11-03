@@ -201,11 +201,18 @@ h2 em, .sub em { font-family: var(--font-accent); font-style: italic; text-trans
 .faq summary { list-style: none; cursor: pointer; padding: 18px 64px 18px 20px; position: relative; font-weight: 700; font-size: 1.1rem; line-height: 1.3; }
 .faq summary::-webkit-details-marker { display: none; }
 .faq summary::after {
-  content: "+"; position: absolute; right: 16px; top: 50%; transform: translateY(-50%);
-  width: 32px; height: 32px; display: grid; place-items: center; border: 3px solid var(--ink); border-radius: 50%;
-  background: var(--pink); color: var(--on-color); font-family: var(--font-display); font-size: 1.4rem; line-height: 1;
+  content: ""; position: absolute; right: 16px; top: 50%; transform: translateY(-50%);
+  width: 36px; height: 36px; border: 3px solid var(--ink); border-radius: 50%;
+  background:
+    linear-gradient(var(--on-color), var(--on-color)) center / 14px 3px no-repeat,
+    linear-gradient(var(--on-color), var(--on-color)) center / 3px 14px no-repeat,
+    var(--pink);
 }
-.faq details[open] summary::after { content: "\2212"; }
+.faq details[open] summary::after {
+  background:
+    linear-gradient(var(--on-color), var(--on-color)) center / 14px 3px no-repeat,
+    var(--pink);
+}
 .faq details p { padding: 0 20px 22px; max-width: 40em; font-weight: 500; }
 
 /* Contato */
