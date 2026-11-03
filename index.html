@@ -172,7 +172,7 @@ h2 em, .sub em { font-family: var(--font-accent); font-style: italic; text-trans
   display: grid; place-items: center; overflow: hidden; position: relative;
   font-family: var(--font-display); font-size: 8rem; color: var(--on-color); transform: rotate(-2deg);
 }
-.photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(1) contrast(1.2); mix-blend-mode: multiply; }
+.photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 20%; display: block; filter: saturate(1.1) contrast(1.04); }
 .sticker { position: absolute; right: -14px; bottom: -18px; transform: rotate(6deg); background: var(--mustard); color: var(--on-color); border: 3px solid var(--ink); padding: 6px 14px; font-family: var(--font-display); font-size: 1.2rem; text-transform: uppercase; letter-spacing: .04em; box-shadow: 4px 4px 0 var(--ink); }
 .about-text { display: flex; flex-direction: column; gap: 20px; min-width: 0; }
 .about-text p { max-width: 32em; font-size: 1.1rem; font-weight: 500; }
@@ -298,7 +298,7 @@ footer p { max-width: 46em; }
 
     <section class="about" id="sobre" aria-labelledby="t-about">
       <div class="photo-wrap">
-        <div class="photo" id="photo" role="img" aria-label="Foto de Samantha Campos">SC</div>
+        <div class="photo" id="photo"><span>SC</span><img src="foto.jpg" alt="Samantha Campos, psicóloga, sorrindo" width="900" height="1350"></div>
         <span class="sticker">Psicóloga</span>
       </div>
       <div class="about-text">
@@ -394,19 +394,18 @@ footer p { max-width: 46em; }
 <script>
   // Preencha o número com DDI+DDD+número, só dígitos. Exemplo: "5563999999999".
   // Enquanto estiver vazio, o botão do WhatsApp leva ao Instagram.
-  var WHATSAPP_NUMBER = "";
+  var WHATSAPP_NUMBER = "5563999925150";
   var MENSAGEM = "Olá, Samantha! Vi seu site e gostaria de agendar uma conversa inicial.";
-  // Para usar sua foto: coloque o arquivo na mesma pasta e escreva o nome aqui. Exemplo: "foto.jpg".
-  var FOTO_URL = "";
 
   (function () {
     var main = document.querySelector(".js-contact-main");
     if (main && WHATSAPP_NUMBER) {
       main.href = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(MENSAGEM);
     }
-    if (FOTO_URL) {
-      var p = document.getElementById("photo");
-      if (p) { p.textContent = ""; var im = document.createElement("img"); im.src = FOTO_URL; im.alt = "Samantha Campos"; p.appendChild(im); }
+    var im = document.querySelector("#photo img");
+    if (im) {
+      im.addEventListener("error", function () { im.remove(); });
+      if (im.complete && im.naturalWidth === 0) im.remove();
     }
   })();
 </script>
