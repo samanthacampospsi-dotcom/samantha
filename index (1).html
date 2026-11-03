@@ -1,0 +1,408 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Samantha Campos, psicóloga (CRP 23/03737). Atendimento psicológico online para jovens adultos, com escuta orientada pela psicanálise.">
+<title>Samantha Campos Psicóloga</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;700&family=Instrument+Serif:ital@0;1&display=swap">
+<style>
+/* Layout: neo-brutalismo retrô. Tipografia condensada gigante, blocos chapados com borda e sombra dura, grão de impressão risográfica. */
+:root {
+  --paper: #FBEBC8;
+  --ink: #15102A;
+  --card: #FFF7E3;
+  --orange: #FF5A1F;
+  --red: #E8261A;
+  --pink: #FF3E9A;
+  --blue: #2B3BFF;
+  --mustard: #FFB81C;
+  --on-color: #15102A;
+  --on-blue: #FFF4DC;
+  --grain: .32;
+  --font-display: "Anton", "Impact", "Arial Narrow", sans-serif;
+  --font-body: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --font-accent: "Instrument Serif", Georgia, "Times New Roman", serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #17102B;
+    --ink: #FFF1D6;
+    --card: #241A40;
+    --orange: #FF6B35;
+    --red: #FF4B3E;
+    --pink: #FF55A8;
+    --blue: #5566FF;
+    --mustard: #FFC83D;
+    --grain: .5;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #17102B;
+  --ink: #FFF1D6;
+  --card: #241A40;
+  --orange: #FF6B35;
+  --red: #FF4B3E;
+  --pink: #FF55A8;
+  --blue: #5566FF;
+  --mustard: #FFC83D;
+  --grain: .5;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.55;
+  padding-block: 0 56px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+/* faixa de segurança acima do menu fixo */
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--paper); }
+/* grão de impressão */
+body::after {
+  content: ""; position: fixed; inset: 0; z-index: 50; pointer-events: none; opacity: var(--grain); mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .6 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.wrap { max-width: 1180px; margin: 0 auto; display: flex; flex-direction: column; gap: clamp(72px, 11vw, 128px); }
+main { display: flex; flex-direction: column; gap: clamp(72px, 11vw, 128px); }
+section[id] { scroll-margin-top: 140px; }
+h1, h2, h3 { font-family: var(--font-display); font-weight: 400; margin: 0; text-transform: uppercase; text-wrap: balance; }
+p { margin: 0; }
+a { color: inherit; }
+:focus-visible { outline: 4px solid var(--blue); outline-offset: 3px; }
+
+/* Menu fixo */
+.top {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 41;
+  background: var(--paper); border-bottom: 3px solid var(--ink);
+  padding-block: 12px;
+  display: flex; align-items: center; justify-content: space-between; gap: 8px 20px; flex-wrap: wrap;
+}
+.brand { font-family: var(--font-display); font-size: 1.6rem; line-height: 1; text-transform: uppercase; text-decoration: none; letter-spacing: .01em; }
+.brand span { color: var(--pink); }
+.nav { display: flex; gap: 20px; order: 3; width: 100%; overflow-x: auto; white-space: nowrap; padding: 4px 0 6px; }
+.nav a { text-decoration: none; font-size: .82rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: 2px 4px; }
+.nav a:hover { background: var(--mustard); color: var(--on-color); }
+@media (min-width: 900px) { .nav { order: 0; width: auto; overflow: visible; margin-left: auto; } }
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--orange); color: var(--on-color);
+  font-family: var(--font-display); font-size: 1.25rem; letter-spacing: .04em; text-transform: uppercase; line-height: 1;
+  padding: 16px 26px; text-decoration: none;
+  border: 3px solid var(--ink); box-shadow: 6px 6px 0 var(--ink);
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+.btn:hover { transform: translate(3px, 3px); box-shadow: 3px 3px 0 var(--ink); }
+.btn.small { background: var(--pink); font-size: 1rem; padding: 10px 16px; box-shadow: 4px 4px 0 var(--ink); }
+.btn.small:hover { box-shadow: 2px 2px 0 var(--ink); transform: translate(2px, 2px); }
+.btn.dark { background: var(--ink); color: var(--paper); }
+
+/* Faixa em movimento */
+.marquee { border: 3px solid var(--ink); background: var(--mustard); color: var(--on-color); overflow: hidden; white-space: nowrap; font-family: var(--font-display); font-size: 1.35rem; letter-spacing: .05em; text-transform: uppercase; padding: 8px 0; box-shadow: 6px 6px 0 var(--ink); }
+.marquee-track { display: inline-flex; animation: slide 30s linear infinite; }
+.marquee-track span { padding-right: .6em; }
+.marquee b { color: var(--red); font-weight: 400; padding: 0 .5em; }
+@keyframes slide { to { transform: translateX(-50%); } }
+
+/* Hero */
+.hero { display: flex; flex-direction: column; gap: 36px; padding-top: clamp(8px, 3vw, 32px); }
+.pills { display: flex; flex-wrap: wrap; gap: 10px; }
+.pill { display: inline-block; border: 3px solid var(--ink); background: var(--card); color: var(--ink); padding: 4px 14px; font-size: .8rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+.pill.y { background: var(--mustard); color: var(--on-color); transform: rotate(-2deg); }
+.pill.p { background: var(--pink); color: var(--on-color); transform: rotate(1.5deg); }
+.hero h1 { font-size: clamp(3.2rem, 14.2vw, 10rem); line-height: .9; letter-spacing: .003em; }
+.hero h1 .a { text-shadow: .04em .04em 0 var(--pink); }
+.hero h1 .hl { background: var(--blue); color: var(--on-blue); padding: 0 .1em; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+.hero h1 .q { color: var(--mustard); }
+.hero-row { display: grid; grid-template-columns: 1fr; gap: 40px; align-items: center; }
+.lead { font-size: 1.3rem; font-weight: 500; line-height: 1.45; max-width: 27em; margin-bottom: 30px; }
+.collage { position: relative; width: 100%; max-width: 440px; aspect-ratio: 1; margin: 0 auto; }
+.collage > * { position: absolute; }
+.c-arch { left: 2%; bottom: 0; width: 44%; height: 64%; background: var(--orange); border: 3px solid var(--ink); border-radius: 999px 999px 0 0; box-shadow: 6px 6px 0 var(--ink); overflow: hidden; }
+.c-arch::after, .halftone::after { content: ""; position: absolute; inset: 0; background-image: radial-gradient(var(--ink) 1.6px, transparent 1.9px); background-size: 11px 11px; opacity: .28; }
+.c-circle { left: 0; top: 6%; width: 34%; aspect-ratio: 1; background: var(--pink); border: 3px solid var(--ink); border-radius: 50%; box-shadow: 5px 5px 0 var(--ink); display: grid; place-items: center; font-family: var(--font-display); font-size: clamp(1rem, 3.4vw, 1.5rem); color: var(--on-color); letter-spacing: .05em; }
+.c-tri { right: 4%; bottom: 2%; width: 34%; aspect-ratio: 1; background: var(--blue); clip-path: polygon(50% 0, 100% 100%, 0 100%); }
+.c-burst { right: 0; top: 0; width: 62%; aspect-ratio: 1; transform: rotate(8deg); display: grid; place-items: center; }
+.c-burst svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.c-burst polygon { fill: var(--mustard); stroke: var(--ink); stroke-width: 2.2; stroke-linejoin: round; }
+.c-burst span { position: relative; font-family: var(--font-display); font-size: clamp(1.25rem, 4.6vw, 2rem); line-height: .95; text-transform: uppercase; text-align: center; color: var(--on-color); }
+@media (min-width: 820px) { .hero-row { grid-template-columns: 1.15fr .85fr; gap: 56px; } }
+
+/* Seções */
+.label { display: inline-block; border: 3px solid var(--ink); background: var(--mustard); color: var(--on-color); padding: 4px 14px; font-size: .8rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; transform: rotate(-2deg); margin-bottom: 18px; }
+h2 { font-size: clamp(2.7rem, 9.5vw, 6rem); line-height: .92; letter-spacing: .003em; }
+h2 em, .sub em { font-family: var(--font-accent); font-style: italic; text-transform: none; color: var(--pink); font-size: 1.12em; letter-spacing: 0; }
+.head { max-width: 14em; margin-bottom: 36px; }
+.sub { font-size: clamp(1.8rem, 5vw, 2.6rem); margin: 56px 0 24px; line-height: 1; }
+
+/* Como funciona */
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 22px; margin: 0; }
+.fact { border: 3px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); padding: 22px 20px 26px; min-width: 0; color: var(--on-color); }
+.fact:nth-child(1) { background: var(--orange); }
+.fact:nth-child(2) { background: var(--pink); }
+.fact:nth-child(3) { background: var(--blue); color: var(--on-blue); }
+.fact:nth-child(4) { background: var(--mustard); }
+.fact dt { font-size: .78rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; margin-bottom: 10px; }
+.fact dd { margin: 0; font-family: var(--font-display); font-size: clamp(1.8rem, 4.4vw, 2.3rem); line-height: 1; text-transform: uppercase; }
+.fact dd small { display: block; margin-top: 12px; font-family: var(--font-body); font-size: .95rem; line-height: 1.45; text-transform: none; font-weight: 500; }
+.steps { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 22px; counter-reset: step; }
+.step { background: var(--card); border: 3px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); padding: 18px 22px 28px; counter-increment: step; min-width: 0; }
+.step::before { content: counter(step); display: block; font-family: var(--font-display); font-size: 5.5rem; line-height: 1; color: var(--orange); text-shadow: 4px 4px 0 var(--ink); }
+.step:nth-child(2)::before { color: var(--pink); }
+.step:nth-child(3)::before { color: var(--blue); }
+.step h3 { font-size: 1.9rem; line-height: 1; margin: 6px 0 12px; }
+.step p { font-weight: 500; }
+
+/* Sobre */
+.about { display: grid; grid-template-columns: 1fr; gap: 48px; align-items: start; }
+.photo-wrap { position: relative; width: 100%; max-width: 340px; margin: 0 auto; }
+.photo {
+  width: 100%; aspect-ratio: 4 / 5; background: var(--pink);
+  border: 3px solid var(--ink); box-shadow: 8px 8px 0 var(--ink);
+  display: grid; place-items: center; overflow: hidden; position: relative;
+  font-family: var(--font-display); font-size: 8rem; color: var(--on-color); transform: rotate(-2deg);
+}
+.photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(1) contrast(1.2); mix-blend-mode: multiply; }
+.sticker { position: absolute; right: -14px; bottom: -18px; transform: rotate(6deg); background: var(--mustard); color: var(--on-color); border: 3px solid var(--ink); padding: 6px 14px; font-family: var(--font-display); font-size: 1.2rem; text-transform: uppercase; letter-spacing: .04em; box-shadow: 4px 4px 0 var(--ink); }
+.about-text { display: flex; flex-direction: column; gap: 20px; min-width: 0; }
+.about-text p { max-width: 32em; font-size: 1.1rem; font-weight: 500; }
+.creds { list-style: none; padding: 0; margin: 10px 0 0; max-width: 34em; border: 3px solid var(--ink); background: var(--card); box-shadow: 6px 6px 0 var(--ink); }
+.creds li { padding: 14px 18px; display: flex; gap: 16px; border-top: 3px solid var(--ink); font-weight: 500; }
+.creds li:first-child { border-top: 0; }
+.creds span { flex: 0 0 5.5em; font-size: .75rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; padding-top: 4px; color: var(--blue); }
+@media (min-width: 820px) { .about { grid-template-columns: 340px 1fr; gap: 72px; } }
+
+/* Meu processo */
+.process-intro { position: relative; background: var(--pink); color: var(--on-color); border: 3px solid var(--ink); box-shadow: 8px 8px 0 var(--ink); padding: clamp(22px, 4vw, 40px); font-size: clamp(1.15rem, 2.6vw, 1.5rem); font-weight: 500; line-height: 1.4; max-width: 44em; margin-bottom: 44px; overflow: hidden; }
+.process-intro { isolation: isolate; }
+.process-intro.halftone::after { z-index: -1; }
+.method { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 22px; }
+.method div { border: 3px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); padding: 24px 22px 28px; min-width: 0; color: var(--on-color); }
+.method div:nth-child(1) { background: var(--mustard); }
+.method div:nth-child(2) { background: var(--orange); }
+.method div:nth-child(3) { background: var(--blue); color: var(--on-blue); }
+.method h3 { font-family: var(--font-accent); font-style: italic; text-transform: none; font-size: 2.2rem; line-height: 1; margin-bottom: 12px; }
+.method p { font-weight: 500; }
+
+/* Dúvidas */
+.faq { max-width: 820px; display: flex; flex-direction: column; gap: 16px; }
+.faq details { background: var(--card); border: 3px solid var(--ink); box-shadow: 5px 5px 0 var(--ink); }
+.faq details[open] { background: var(--mustard); color: var(--on-color); }
+.faq summary { list-style: none; cursor: pointer; padding: 18px 64px 18px 20px; position: relative; font-weight: 700; font-size: 1.1rem; line-height: 1.3; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after {
+  content: "+"; position: absolute; right: 16px; top: 50%; transform: translateY(-50%);
+  width: 32px; height: 32px; display: grid; place-items: center; border: 3px solid var(--ink); border-radius: 50%;
+  background: var(--pink); color: var(--on-color); font-family: var(--font-display); font-size: 1.4rem; line-height: 1;
+}
+.faq details[open] summary::after { content: "\2212"; }
+.faq details p { padding: 0 20px 22px; max-width: 40em; font-weight: 500; }
+
+/* Contato */
+.contact { position: relative; background: var(--pink); color: var(--on-color); border: 3px solid var(--ink); box-shadow: 10px 10px 0 var(--ink); padding: clamp(28px, 6vw, 72px); display: flex; flex-direction: column; gap: 24px; align-items: flex-start; overflow: hidden; }
+.contact::before { content: ""; position: absolute; right: -60px; top: -60px; width: 240px; aspect-ratio: 1; border-radius: 50%; background: var(--mustard); border: 3px solid var(--ink); }
+.contact > * { position: relative; z-index: 1; }
+.contact h2 { font-size: clamp(3rem, 12vw, 8rem); max-width: 8em; }
+.contact p { max-width: 30em; font-size: 1.2rem; font-weight: 500; }
+.contact .ig { font-weight: 700; }
+
+/* Rodapé */
+footer { display: flex; flex-direction: column; gap: 12px; border-top: 3px solid var(--ink); padding-top: 28px; font-size: .92rem; font-weight: 500; }
+footer strong { font-family: var(--font-display); font-weight: 400; font-size: 1.5rem; text-transform: uppercase; letter-spacing: .02em; }
+footer p { max-width: 46em; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .btn { transition: none; }
+  .marquee-track { animation: none; }
+}
+</style>
+</head>
+<body>
+
+
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="#inicio">Samantha<span>.</span>Campos</a>
+    <nav class="nav" aria-label="Seções">
+      <a href="#como">Como funciona</a>
+      <a href="#sobre">Sobre mim</a>
+      <a href="#processo">Meu processo</a>
+      <a href="#duvidas">Dúvidas</a>
+    </nav>
+    <a class="btn small" href="#contato">Conversar</a>
+  </header>
+
+  <main id="inicio">
+    <section class="hero">
+      <div class="pills"><span class="pill">Samantha Campos</span><span class="pill y">Psicóloga</span><span class="pill p">CRP 23/03737</span></div>
+      <h1><span class="a">Quem é você</span> <span class="hl">quando não é o que esperam de você<span class="q">?</span></span></h1>
+      <div class="hero-row">
+        <div>
+          <p class="lead">Atendimento psicológico online, orientado pela psicanálise, para jovens adultos. Um espaço de escuta, no seu tempo, para começar a perguntar o que é desejo seu.</p>
+          <a class="btn" href="#contato">Começar por uma conversa</a>
+        </div>
+        <div class="collage" aria-hidden="true">
+          <div class="c-arch"></div>
+          <div class="c-circle">ONLINE</div>
+          <div class="c-tri"></div>
+          <div class="c-burst">
+            <svg viewBox="0 0 100 100"><polygon points="50,2 63.8,16.7 83.9,16.1 83.3,36.2 98,50 83.3,63.8 83.9,83.9 63.8,83.3 50,98 36.2,83.3 16.1,83.9 16.7,63.8 2,50 16.7,36.2 16.1,16.1 36.2,16.7"/></svg>
+            <span>Escuta<br>sem<br>pressa</span>
+          </div>
+        </div>
+      </div>
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee-track">
+          <span>Psicologia<b>★</b>Escuta<b>★</b>Desejo<b>★</b>Online<b>★</b>Jovens adultos<b>★</b>Psicologia<b>★</b>Escuta<b>★</b>Desejo<b>★</b>Online<b>★</b>Jovens adultos<b>★</b></span>
+          <span>Psicologia<b>★</b>Escuta<b>★</b>Desejo<b>★</b>Online<b>★</b>Jovens adultos<b>★</b>Psicologia<b>★</b>Escuta<b>★</b>Desejo<b>★</b>Online<b>★</b>Jovens adultos<b>★</b></span>
+        </div>
+      </div>
+    </section>
+
+    <section id="como" aria-labelledby="t-how">
+      <div class="head">
+        <p class="label">Como funciona</p>
+        <h2 id="t-how">O atendimento, <em>na prática</em></h2>
+      </div>
+      <dl class="facts">
+        <div class="fact"><dt>Modalidade</dt><dd>Online<small>Por videochamada, de onde você estiver no Brasil.</small></dd></div>
+        <div class="fact"><dt>Sessão</dt><dd>50 minutos<small>Frequência combinada na conversa inicial.</small></dd></div>
+        <div class="fact"><dt>Horários</dt><dd>Seg a qui, 19h às 22h<small>Horário de Brasília. Pensado para quem trabalha durante o dia.</small></dd></div>
+        <div class="fact"><dt>Valor</dt><dd>Combinado na conversa<small>Considerando a realidade de cada pessoa.</small></dd></div>
+      </dl>
+      <h3 class="sub">Como começa</h3>
+      <ol class="steps">
+        <li class="step"><h3>Você me chama</h3><p>Pelo WhatsApp, com uma mensagem curta. Não precisa explicar tudo agora.</p></li>
+        <li class="step"><h3>Conversa inicial</h3><p>Trinta minutos, sem custo, para você contar o que te trouxe e eu explicar como trabalho.</p></li>
+        <li class="step"><h3>Combinamos o início</h3><p>Se fizer sentido para os dois, definimos dia, horário e valor.</p></li>
+      </ol>
+    </section>
+
+    <section class="about" id="sobre" aria-labelledby="t-about">
+      <div class="photo-wrap">
+        <div class="photo" id="photo" role="img" aria-label="Foto de Samantha Campos">SC</div>
+        <span class="sticker">Psicóloga</span>
+      </div>
+      <div class="about-text">
+        <div>
+          <p class="label">Sobre mim</p>
+          <h2 id="t-about">Oi, eu sou a <em>Samantha</em></h2>
+        </div>
+        <p>Sou psicóloga e trabalho com Recursos Humanos. Vejo de perto o que o trabalho pede das pessoas e o que acontece quando elas seguem dando conta sem saber para quê.</p>
+        <p>Meu trabalho de conclusão de curso foi sobre burnout, e desde então me interessa o que fica por trás do cansaço e da dúvida sobre o próprio caminho.</p>
+        <p>Meu atendimento é orientado pela psicanálise: uma escuta sem pressa, em que você fala livremente e eu acompanho o que se repete no seu discurso.</p>
+        <ul class="creds">
+          <li><span>Formação</span>Graduada em Psicologia (2025)</li>
+          <li><span>Pós</span>MBA em Psicologia Organizacional e Gestão de Pessoas, PUCRS (em andamento)</li>
+          <li><span>Registro</span>CRP 23/03737</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="processo" aria-labelledby="t-process">
+      <div class="head">
+        <p class="label">Meu processo</p>
+        <h2 id="t-process">Uma escuta <em>sem roteiro</em></h2>
+      </div>
+      <p class="process-intro halftone">Chegam até mim queixas como “cumpro tudo o que esperam de mim e, ainda assim, algo falta” ou “sei o que esperam de mim, mas não sei o que eu desejo”. Em geral, são a ponta de algo mais antigo: o que foi esperado de você, o que você esperou de si e o que, em meio a isso, é desejo seu.</p>
+      <div class="method">
+        <div><h3>Falar sem roteiro</h3><p>Você começa por onde puder. Não há pergunta certa nem ordem a seguir, e o que parece pouco importante também cabe aqui.</p></div>
+        <div><h3>Escutar o que se repete</h3><p>Palavras que voltam, escolhas que se repetem, silêncios. É nesses pontos que costuma haver algo a ser escutado.</p></div>
+        <div><h3>Construir no seu tempo</h3><p>Sem pressa e sem fórmulas prontas. O ritmo é o seu, e o trabalho se faz a cada sessão.</p></div>
+      </div>
+    </section>
+
+    <section id="duvidas" aria-labelledby="t-faq">
+      <div class="head">
+        <p class="label">Dúvidas</p>
+        <h2 id="t-faq">Perguntas <em>frequentes</em></h2>
+      </div>
+      <div class="faq">
+        <details>
+          <summary>Nunca fiz terapia. Como começo?</summary>
+          <p>Pela conversa inicial. Você não precisa chegar com algo claro: pode chegar só com o incômodo. Eu explico como trabalho, você tira suas dúvidas, e decidimos juntos se faz sentido seguir.</p>
+        </details>
+        <details>
+          <summary>O que é uma escuta orientada pela psicanálise?</summary>
+          <p>Você fala livremente, sem roteiro, no seu ritmo. Eu escuto o que se repete no seu discurso: palavras, hesitações, silêncios. Aos poucos, o que te faz sofrer e o que você deseja ganham contorno, sem fórmulas prontas.</p>
+        </details>
+        <details>
+          <summary>Qual a diferença entre a psicanálise e outras terapias?</summary>
+          <p>Em muitas abordagens, o trabalho segue objetivos e técnicas definidos de antemão. Na psicanálise, o caminho se constrói a partir da sua fala: o que você diz, e o que se repete nisso, orienta o trabalho. São formas diferentes de cuidar, e vale escolher a que faz sentido para você.</p>
+        </details>
+        <details>
+          <summary>Quanto tempo dura o processo?</summary>
+          <p>Não há prazo fixo. O tempo depende de cada pessoa e do que se constrói nas sessões.</p>
+        </details>
+        <details>
+          <summary>O atendimento é sigiloso?</summary>
+          <p>Sim. Tudo o que é dito nas sessões é protegido pelo sigilo profissional, conforme o Código de Ética Profissional do Psicólogo.</p>
+        </details>
+        <details>
+          <summary>O que preciso para fazer a sessão online?</summary>
+          <p>Um celular ou computador com internet e um lugar onde você consiga falar com privacidade.</p>
+        </details>
+        <details>
+          <summary>Moro em outro fuso horário. Consigo atender?</summary>
+          <p>Atendo pessoas de qualquer lugar do Brasil. Os horários são em horário de Brasília, e se o seu fuso for diferente, é só me chamar para vermos o que funciona.</p>
+        </details>
+        <details>
+          <summary>Quanto custa?</summary>
+          <p>O valor é combinado na conversa inicial, considerando a realidade de cada pessoa.</p>
+        </details>
+        <details>
+          <summary>A conversa inicial já é uma sessão?</summary>
+          <p>Ela é um primeiro encontro de 30 minutos, sem custo, para apresentação, dúvidas e combinados. O atendimento começa depois, se fizer sentido para os dois.</p>
+        </details>
+      </div>
+    </section>
+
+    <section class="contact" id="contato" aria-labelledby="t-contact">
+      <h2 id="t-contact">Vamos conversar?</h2>
+      <p>Me chame no WhatsApp para marcar a conversa inicial. Respondo nos horários de atendimento, de segunda a quinta.</p>
+      <a class="btn dark js-contact-main" href="https://www.instagram.com/samanthacampospsi/" target="_blank" rel="noopener">Chamar no WhatsApp</a>
+      <p>Também estou no Instagram: <a class="ig" href="https://www.instagram.com/samanthacampospsi/" target="_blank" rel="noopener">@samanthacampospsi</a></p>
+    </section>
+  </main>
+
+  <footer>
+    <strong>Samantha Campos · Psicóloga · CRP 23/03737</strong>
+    <p><a href="https://www.instagram.com/samanthacampospsi/" target="_blank" rel="noopener">@samanthacampospsi</a></p>
+    <p>Este site tem caráter informativo e não substitui o atendimento psicológico. Em situação de crise, ligue para o CVV no 188 (24 horas, gratuito) ou procure o serviço de urgência mais próximo.</p>
+    <p>© 2026 Samantha Campos</p>
+  </footer>
+</div>
+
+<script>
+  // Preencha o número com DDI+DDD+número, só dígitos. Exemplo: "5563999999999".
+  // Enquanto estiver vazio, o botão do WhatsApp leva ao Instagram.
+  var WHATSAPP_NUMBER = "";
+  var MENSAGEM = "Olá, Samantha! Vi seu site e gostaria de agendar uma conversa inicial.";
+  // Para usar sua foto: coloque o arquivo na mesma pasta e escreva o nome aqui. Exemplo: "foto.jpg".
+  var FOTO_URL = "";
+
+  (function () {
+    var main = document.querySelector(".js-contact-main");
+    if (main && WHATSAPP_NUMBER) {
+      main.href = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(MENSAGEM);
+    }
+    if (FOTO_URL) {
+      var p = document.getElementById("photo");
+      if (p) { p.textContent = ""; var im = document.createElement("img"); im.src = FOTO_URL; im.alt = "Samantha Campos"; p.appendChild(im); }
+    }
+  })();
+</script>
+
+</body>
+</html>
