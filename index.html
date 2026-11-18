@@ -6,6 +6,7 @@
 <meta name="description" content="Samantha Campos, psicóloga (CRP 23/003737). Atendimento psicológico online para jovens adultos, com escuta orientada pela psicanálise.">
 <title>Samantha Campos Psicóloga</title>
 <meta name="claude:viewport-fit-sides" content="cover">
+<script>document.documentElement.className += " js";</script>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,600;1,700&family=DM+Sans:wght@400;500;700&display=swap">
 <style>
 /* Layout: editorial quente. Serifa grande, uma palavra em itálico sobre faixa vinho, recortes de papel rasgado e fundos com grão. Faixas de seção alternam marrom, papel, areia, oliva e vinho. */
@@ -49,7 +50,8 @@ section[id] { scroll-margin-top: 110px; }
 h2 { font-size: clamp(2.5rem, 7.4vw, 5.2rem); line-height: 1; margin-bottom: 44px; max-width: 12em; }
 
 /* Menu */
-.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 41; background: var(--marrom); color: var(--creme); border-bottom: 1px solid rgba(241, 230, 178, .22); }
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 41; background: var(--marrom); color: var(--creme); border-bottom: 1px solid rgba(241, 230, 178, .22); transition: transform .35s cubic-bezier(.2, .7, .2, 1); will-change: transform; }
+.top.hide { transform: translateY(calc(-100% - env(safe-area-inset-top, 0px))); }
 .top .in { display: flex; align-items: center; justify-content: space-between; gap: 6px 20px; flex-wrap: wrap; padding-block: 14px; }
 .brand { font-family: var(--font-display); font-size: 1.55rem; font-weight: 500; letter-spacing: -.03em; text-decoration: none; line-height: 1; }
 .brand em { font-weight: 700; color: var(--creme); }
@@ -160,8 +162,14 @@ footer strong { font-family: var(--font-display); font-weight: 500; font-size: 1
 footer p { max-width: 46em; opacity: .9; }
 footer .line { width: 120px; height: 3px; background: var(--vinho); margin-bottom: 10px; }
 
+/* entrada suave: só esconde se o script rodar; sem script tudo fica visível */
+.js .rv { opacity: 0; translate: 0 28px; transition: opacity .8s ease, translate .8s cubic-bezier(.2, .7, .2, 1); }
+.js .rv.show { opacity: 1; translate: 0 0; }
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
+  .top { transition: none; }
+  .js .rv { opacity: 1; translate: none; transition: none; }
   .ticker-track { animation: none; }
   .btn { transition: none; }
 }
@@ -337,6 +345,39 @@ footer .line { width: 120px; height: 3px; background: var(--vinho); margin-botto
     if (main && WHATSAPP_NUMBER) {
       main.href = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(MENSAGEM);
     }
+    // Menu: some ao rolar para baixo, volta ao rolar para cima
+    var top = document.querySelector(".top"), lastY = window.scrollY, ticking = false;
+    function onScroll() {
+      var y = window.scrollY, d = y - lastY;
+      if (y < 80) top.classList.remove("hide");
+      else if (d > 6) top.classList.add("hide");
+      else if (d < -6) top.classList.remove("hide");
+      if (Math.abs(d) > 6 || y < 80) lastY = y;
+      ticking = false;
+    }
+    window.addEventListener("scroll", function () {
+      if (!ticking) { ticking = true; requestAnimationFrame(onScroll); }
+    }, { passive: true });
+    top.addEventListener("focusin", function () { top.classList.remove("hide"); });
+
+    // Entrada suave das seções
+    var targets = document.querySelectorAll(".band h2, .eyebrow, .lead, .hero .btn, .cutouts, .fact, .sub, .step, .photo-wrap, .about-text > *, .process-intro, .method > div, .faq details, .contato .in > *");
+    targets.forEach(function (el) { el.classList.add("rv"); });
+    if ("IntersectionObserver" in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (!e.isIntersecting) return;
+          var el = e.target, sibs = el.parentElement ? Array.prototype.indexOf.call(el.parentElement.children, el) : 0;
+          el.style.transitionDelay = Math.min(sibs, 4) * 90 + "ms";
+          el.classList.add("show");
+          io.unobserve(el);
+        });
+      }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
+      targets.forEach(function (el) { io.observe(el); });
+    } else {
+      targets.forEach(function (el) { el.classList.add("show"); });
+    }
+
     var im = document.querySelector("#photo img");
     if (im) {
       im.addEventListener("error", function () { im.remove(); });
